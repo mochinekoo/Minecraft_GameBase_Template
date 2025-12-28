@@ -4,3 +4,11 @@ main: mochineko.game_template.Main
 api-version: '1.20'
 authors: [ mochi__neko ]
 website: https://x.com/mc_mochineko
+
+commands:
+  game_start:
+    description: "ゲームを開始するコマンド"
+    permission: game_start
+  game_reset:
+    description: "ゲームをリセットするコマンド"
+    permission: game_reset
