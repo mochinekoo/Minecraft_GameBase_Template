@@ -41,7 +41,15 @@ public class BlockGuardJson extends DeserializedJson {
         public boolean isAABB(Location location) {
             Location start = getStartLocation();
             Location end = getEndLocation();
-            return location.getX() >= start.getX() && location.getX() <= end.getX() && location.getZ() >= start.getZ() && location.getZ() <= end.getZ();
+            int minX = Math.min(start.getBlockX(), end.getBlockX());
+            int minY = Math.min(start.getBlockY(), end.getBlockY());
+            int minZ = Math.min(start.getBlockZ(), end.getBlockZ());
+            int maxX = Math.max(start.getBlockX(), end.getBlockX());
+            int maxY = Math.max(start.getBlockY(), end.getBlockY());
+            int maxZ = Math.max(start.getBlockZ(), end.getBlockZ());
+            return location.getX() >= minX && location.getX() <= maxX &&
+                    location.getY() >= minY && location.getY() <= maxY &&
+                    location.getZ() >= minZ && location.getZ() <= maxZ;
         }
     }
 }
