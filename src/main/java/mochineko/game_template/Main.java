@@ -2,6 +2,7 @@ package mochineko.game_template;
 
 import mochineko.game_template.command.GameStartCommand;
 import mochineko.game_template.command.TeamCommand;
+import mochineko.game_template.listener.BlockBreakListener;
 import mochineko.game_template.listener.PlayerChatListener;
 import mochineko.game_template.manager.ScoreboardManager;
 import org.bukkit.Bukkit;
@@ -20,6 +21,7 @@ public final class Main extends JavaPlugin {
         //listener
         PluginManager pluginManager = getServer().getPluginManager();
         pluginManager.registerEvents(new PlayerChatListener(), this);
+        pluginManager.registerEvents(new BlockBreakListener(), this);
 
         //other
         for (Player online : Bukkit.getOnlinePlayers()) {
