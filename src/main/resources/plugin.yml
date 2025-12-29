@@ -12,3 +12,6 @@ commands:
   game_reset:
     description: "ゲームをリセットするコマンド"
     permission: game_reset
+  game_team:
+    description: "チームに関するコマンド"
+    permission: game_team

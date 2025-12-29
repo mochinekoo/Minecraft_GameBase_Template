@@ -1,6 +1,7 @@
 package mochineko.game_template;
 
 import mochineko.game_template.command.GameStartCommand;
+import mochineko.game_template.command.TeamCommand;
 import mochineko.game_template.manager.ScoreboardManager;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
@@ -13,6 +14,7 @@ public final class Main extends JavaPlugin {
     public void onEnable() {
         //command
         getCommand("game_start").setExecutor(new GameStartCommand());
+        getCommand("game_team").setExecutor(new TeamCommand());
 
         //listener
         PluginManager pluginManager = getServer().getPluginManager();

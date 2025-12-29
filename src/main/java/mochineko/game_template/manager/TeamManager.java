@@ -9,9 +9,8 @@ import org.bukkit.scoreboard.Scoreboard;
 import org.bukkit.scoreboard.Team;
 import org.checkerframework.checker.nullness.qual.NonNull;
 
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
+import java.util.stream.Collectors;
 
 public class TeamManager {
 
@@ -47,6 +46,41 @@ public class TeamManager {
             return true;
         }
         return false;
+    }
+
+    /**
+     * プレイヤーをランダムに参加させる関数
+     */
+    public GameTeam randomJoinTeam(@NonNull Player player) {
+        if (!isJoinTeam(player)) {
+            List<GameTeam> gameTeamList = new ArrayList<>(Arrays.stream(GameTeam.values()).toList());
+            Collections.shuffle(gameTeamList);
+            return gameTeamList.get(0);
+        }
+        return getJoinGameTeam(player);
+    }
+
+    public void assignTeam() {
+        emptyTeam();
+        List<Player> playerList = new ArrayList<>(Bukkit.getOnlinePlayers());
+        Collections.shuffle(playerList);
+
+        for (int i = 0; i < playerList.size(); i++) {
+            switch (i % GameTeam.values().length) {
+                case 0 -> joinTeam(GameTeam.RED, playerList.get(i));
+                case 1 -> joinTeam(GameTeam.BLUE, playerList.get(i));
+            }
+        }
+    }
+
+    public void emptyTeam() {
+        for (GameTeam gameTeam : GameTeam.values()) {
+            Team board_team = getConvertBoardTeam(gameTeam);
+            for (String entry : board_team.getEntries()) {
+                Player player = Bukkit.getPlayer(entry);
+                leaveTeam(player);
+            }
+        }
     }
 
     /**
