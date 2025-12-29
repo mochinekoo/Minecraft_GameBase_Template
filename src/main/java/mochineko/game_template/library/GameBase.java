@@ -15,7 +15,7 @@ public abstract class GameBase {
         this.status = GameStatus.WAITING;
     }
 
-    public abstract void startGame();
+    public abstract int startGame();
     public abstract void resetGame();
 
     public int getTime() {
@@ -55,6 +55,10 @@ public abstract class GameBase {
         this.task = task;
     }
 
+    /**
+     * ゲームが実行中であるかを確認する関数
+     * @return bool型で返す（実行中ならtrue、実行されてないならfalse）
+     */
     public boolean isGameActive() {
         if (task == null) return false;
         return task.isCancelled();
