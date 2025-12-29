@@ -17,10 +17,11 @@ public final class Main extends JavaPlugin {
         //listener
         PluginManager pluginManager = getServer().getPluginManager();
 
-        //
+        //other
         for (Player online : Bukkit.getOnlinePlayers()) {
             ScoreboardManager.getInstance(online.getUniqueId()).setScoreboard();
         }
+        saveDefaultConfig();
 
         getLogger().info("プラグインが起動しました。");
 
